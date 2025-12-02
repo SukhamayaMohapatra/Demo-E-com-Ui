@@ -1,9 +1,14 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const HeroSection = () => {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    setText("WELCOME TO OUR SITE");
+  }, []);
   return (
     <>
       <Box
@@ -39,7 +44,8 @@ const HeroSection = () => {
               color: "white",
               fontSize: "24px",
               fontWeight: "Semi Bold",
-              maxWidth: "750px",
+              maxWidth: "850px",
+              textAlign: "center",
             }}
           >
             Lorem Ipsum is simply dummy text <br /> of the printing and
@@ -49,6 +55,16 @@ const HeroSection = () => {
             it to make a type specimen book.
             <br /> It has survived not only five centuries, but also the leap
             into electronic typesetting, remaining essentially unchanged.
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "emoji",
+              color: "gray",
+              fontSize: "48px",
+              fontWeight: "Bold",
+            }}
+          >
+            {text}
           </Typography>
         </Stack>
       </Box>
