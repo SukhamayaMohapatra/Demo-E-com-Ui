@@ -39,16 +39,18 @@ const Header = () => {
               >
                 About
               </Typography>
-              <Typography
-                sx={{
-                  color: "#FFFFFF",
-                  fontFamily: "emoji",
-                  fontSize: "24px",
-                  fontWeight: "Bold",
-                }}
-              >
-                Features
-              </Typography>
+              <Link to={"/features"} style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    color: "#FFFFFF",
+                    fontFamily: "emoji",
+                    fontSize: "24px",
+                    fontWeight: "Bold",
+                  }}
+                >
+                  Features
+                </Typography>
+              </Link>
               <Link to={"/about"} style={{ textDecoration: "none" }}>
                 <Typography
                   sx={{

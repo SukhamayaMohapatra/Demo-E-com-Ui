@@ -102,8 +102,6 @@ const Home = () => {
     <>
       <Box
         sx={{
-          background:
-            "linear-gradient(to bottom right,  #FFFFFF 0%, #0c9ef3ff 100%)",
           paddingTop: "100px",
         }}
       >
