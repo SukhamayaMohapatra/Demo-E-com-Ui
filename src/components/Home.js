@@ -10,6 +10,7 @@ import Content from "./Content";
 import Box from "@mui/material/Box";
 import { add } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
+import HeroSection from "./HeroSection";
 
 const Home = () => {
   const [post, getPost] = useState([]);
@@ -100,6 +101,7 @@ const Home = () => {
 
   return (
     <>
+      <HeroSection />
       <Box
         sx={{
           paddingTop: "100px",

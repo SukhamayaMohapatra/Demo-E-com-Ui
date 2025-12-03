@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Header from "./Header";
+import PageLoad from "./PageLoad";
 
 const Cart = () => {
   const product = useSelector((state) => state.cart);
@@ -17,6 +18,8 @@ const Cart = () => {
   const handleClick = (id) => {
     dispatch(remove(id));
   };
+
+  const isCartEmpty = product.length === 0;
 
   const postDetails = product ? (
     product.map((e) => (
@@ -84,8 +87,17 @@ const Cart = () => {
       </Grid>
     ))
   ) : (
-    <h1 style={{}}>No Data</h1>
+    <h1>No Data</h1>
   );
+
+  if (isCartEmpty) {
+    return (
+      <>
+        <PageLoad />
+      </>
+    );
+  }
+
   return (
     <div>
       <Header />
