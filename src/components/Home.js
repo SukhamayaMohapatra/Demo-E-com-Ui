@@ -12,7 +12,7 @@ import { add } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
 import HeroSection from "./HeroSection";
 
-const Home = () => {
+const Home = ({ query }) => {
   const [post, getPost] = useState([]);
 
   const dispatch = useDispatch();
@@ -32,69 +32,71 @@ const Home = () => {
   }, []);
 
   const postDetails = post ? (
-    post.map((e) => (
-      <Grid item xs={12} sm={6} md={4}>
-        <Card
-          sx={{
-            height: "400px",
-            width: "360px",
-            borderRadius: "40px",
-            bgcolor: "wheat",
-            boxShadow: "8px 8px 15px rgba(0, 0, 0, 0.3)",
-          }}
-        >
-          <Avatar
-            src={e.image}
-            alt="..."
-            style={{
-              width: "220px",
-              height: "210px",
-              marginLeft: "70px",
-              marginTop: "10px",
-              backgroundSize: "contain",
-              border: "5px solid #FFFFFF",
-            }}
-          />
-          <CardContent sx={{ textAlign: "center" }}>
-            <Typography
-              sx={{
-                fontFamily: "emoji",
-                fontSize: "18px",
-                fontWeight: "Bold",
-              }}
-            >
-              Product :{e.title}
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "emoji",
-                fontSize: "18px",
-                fontWeight: "Bold",
-              }}
-            >
-              Price : ${e.price}
-            </Typography>
-          </CardContent>
-          <Button
-            onClick={() => handleClick(e)}
-            variant="contained"
+    post
+      .filter((e) => e.title.toLowerCase().includes(query))
+      .map((e) => (
+        <Grid item xs={12} sm={6} md={4}>
+          <Card
             sx={{
-              width: "140px",
-              height: "50px",
-              borderRadius: "12px",
-              bgcolor: "coral",
-              marginLeft: "110px",
-              textTransform: "none",
-              fontFamily: "emoji",
-              fontSize: "14px",
-              fontWeight: "Bold",
+              height: "400px",
+              width: "360px",
+              borderRadius: "40px",
+              bgcolor: "wheat",
+              boxShadow: "8px 8px 15px rgba(0, 0, 0, 0.3)",
             }}
           >
-            Add to cart
-          </Button>
-        </Card>
-      </Grid>
-    ))
+            <Avatar
+              src={e.image}
+              alt="..."
+              style={{
+                width: "220px",
+                height: "210px",
+                marginLeft: "70px",
+                marginTop: "10px",
+                backgroundSize: "contain",
+                border: "5px solid #FFFFFF",
+              }}
+            />
+            <CardContent sx={{ textAlign: "center" }}>
+              <Typography
+                sx={{
+                  fontFamily: "emoji",
+                  fontSize: "18px",
+                  fontWeight: "Bold",
+                }}
+              >
+                Product :{e.title}
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "emoji",
+                  fontSize: "18px",
+                  fontWeight: "Bold",
+                }}
+              >
+                Price : ${e.price}
+              </Typography>
+            </CardContent>
+            <Button
+              onClick={() => handleClick(e)}
+              variant="contained"
+              sx={{
+                width: "140px",
+                height: "50px",
+                borderRadius: "12px",
+                bgcolor: "coral",
+                marginLeft: "110px",
+                textTransform: "none",
+                fontFamily: "emoji",
+                fontSize: "14px",
+                fontWeight: "Bold",
+              }}
+            >
+              Add to cart
+            </Button>
+          </Card>
+        </Grid>
+      ))
   ) : (
     <h1 style={{}}>No Data</h1>
   );

@@ -4,14 +4,17 @@ import Cart from "./components/Cart";
 import Home from "./components/Home";
 import About from "./components/About";
 import Features from "./components/Features";
+import { useState } from "react";
 
 function App() {
+  const [query, setQuery] = useState("");
+
   return (
     <>
-      <Header />
+      <Header setQuery={setQuery} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home query={query} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/features" element={<Features />} />

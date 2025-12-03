@@ -8,8 +8,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
-const Header = () => {
+const Header = ({ setQuery }) => {
   const data = useSelector((state) => state.cart);
   return (
     <>
@@ -64,24 +66,46 @@ const Header = () => {
                 </Typography>
               </Link>
             </Stack>
-            <Link to={"/cart"} style={{ textDecoration: "none" }}>
-              <Stack
-                direction={"row"}
-                sx={{ gap: "10px", marginRight: "10px" }}
-              >
+
+            <TextField
+              onChange={(e) => setQuery(e.target.value.toLowerCase())}
+              sx={{
+                width: "230px",
+                bgcolor: "white",
+                borderRadius: "40px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none",
+                },
+              }}
+              label="Search"
+              variant="outlined"
+              slotProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton aria-label="search" sx={{ color: "red" }}>
+                      <SearchIcon sx={{ color: "red" }} />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Stack direction={"row"}>
+              <Link to={"/cart"} style={{ textDecoration: "none" }}>
                 <ShoppingCartIcon fontSize="large" sx={{ color: "#FFFFFF" }} />
-                <Typography
-                  sx={{
-                    color: "#FFFFFF",
-                    fontFamily: "emoji",
-                    fontSize: "24px",
-                    fontWeight: "Bold",
-                  }}
-                >
-                  {data.length}
-                </Typography>
-              </Stack>
-            </Link>
+              </Link>
+              <Typography
+                sx={{
+                  color: "#FFFFFF",
+                  fontFamily: "emoji",
+                  fontSize: "24px",
+                  fontWeight: "Bold",
+                  marginRight: "5px",
+                }}
+              >
+                {data.length}
+              </Typography>
+            </Stack>
+
             <Button
               variant="contained"
               sx={{
